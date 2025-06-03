@@ -1,80 +1,174 @@
-Lung Cancer Risk Assessment Tool
-Overview
-This web-based application is an AI-powered tool designed to evaluate risk factors and provide an early assessment of lung cancer probability. It uses a comprehensive questionnaire to gather patient information, analyzes the data using a predictive algorithm, and presents the results with clear visualizations and medical recommendations.
+# Lung Cancer Risk Assessment Tool
 
-Lung Cancer Risk Assessment Screenshot
+A web-based, AI-powered application to evaluate lung cancer risk based on user-provided health factors. This tool collects 15 inputs via an interactive form, runs a Random Forest classifier in real time, and displays results—including probability, top contributing factors, and model performance metrics—through rich visualizations and recommendations.
 
-Key Features
-Patient Information Form: Collects 15 different health factors including age, smoking status, symptoms, and lifestyle habits
+---
 
-Real-time Risk Calculation: Instantly calculates lung cancer risk probability based on input data
+## 📋 Table of Contents
 
-Visual Risk Assessment:
+1. [Overview](#overview)
+2. [Key Features](#key-features)
+3. [Architecture & File Structure](#architecture--file-structure)
+4. [Technology Stack](#technology-stack)
+5. [Installation & Setup](#installation--setup)
+6. [Running the Application](#running-the-application)
+7. [API Endpoints](#api-endpoints)
+8. [How It Works](#how-it-works)
+9. [Screenshots](#screenshots)
+10. [Contributing](#contributing)
+11. [License](#license)
+12. [Disclaimer](#disclaimer)
 
-Color-coded risk classification (High/Low)
+---
 
-Interactive risk meter showing percentage probability
+## 🔍 Overview
 
-Top contributing factors analysis
+The **Lung Cancer Risk Assessment Tool** uses a lightweight Flask backend and a React-inspired frontend to:
 
-Model Performance Metrics: Displays accuracy, precision, recall, and F1-score
+* **Collect**: Ask users for 15 critical health parameters (gender, age, smoking status, symptoms, lifestyle factors).
+* **Predict**: Run a pretrained Random Forest model that outputs a lung cancer risk probability and “Yes/No” classification.
+* **Visualize**: Show model performance (accuracy, precision, recall, F1-score), feature importance bars, a color-coded risk meter, and a list of top contributing factors.
+* **Recommend**: Provide personalized medical guidance based on risk category (Low/High).
 
-Feature Importance Visualization: Bar chart showing key risk factors
+All user inputs are validated in the browser before submission. The frontend calls Flask endpoints to fetch metrics, feature importances, and predictions via JSON. The entire UI is responsive and mobile-first.
 
-Medical Recommendations: Personalized health suggestions based on assessment results
+---
 
-Responsive Design: Works on all devices from mobile to desktop
+## ✨ Key Features
 
-How It Works
-Input Patient Information: Fill out the form with health details
+* **Comprehensive Questionnaire**
 
-Risk Assessment: Click "Assess Lung Cancer Risk" to analyze the data
+  * Collects 15 discrete health inputs: gender, age, smoking, symptoms, lifestyle, and chronic conditions.
+  * Client-side validation ensures completeness and value bounds.
 
-View Results:
+* **Real-Time Prediction**
 
-Get a clear High/Low risk classification
+  * Random Forest classifier served from Flask.
+  * Returns risk label ("YES"/"NO") and probability scores instantly.
 
-See your risk percentage on the visual meter
+* **Detailed Model Insights**
 
-Review top contributing factors
+  * Exposes endpoints to retrieve training metrics and feature importances.
 
-Read personalized medical recommendations
+* **Interactive Frontend Visualizations**
 
-Understand the Model: Explore the algorithm's performance metrics and feature importance
+  * Risk Meter, Bar Charts (Chart.js), Feature Highlight Cards.
 
-Technology Stack
-Frontend: HTML5, CSS3, JavaScript
+* **Responsive, Modern UI**
 
-Data Visualization: Chart.js
+  * Built with HTML5, CSS3, and Vanilla JS.
+  * Clean, medical-themed design optimized for all devices.
 
-UI Components: Font Awesome icons
+* **Lightweight Deployment**
 
-Design: Modern, responsive layout with medical-themed color scheme
+  * Single-page HTML + Flask backend. No heavy frameworks or build step required.
 
-Algorithm: Custom risk calculation model based on clinical research
+---
 
-Medical Disclaimer
-Important: This tool is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. The results provided by this tool are for informational purposes only and should not be used for self-diagnosis.
+## 📂 Architecture & File Structure
 
-Getting Started
-Simply open the index.html file in any modern web browser to use the application. No installation or server setup required.
+```
+Lung-Cancer-Risk-Assessment/
+├── app.py
+├── requirements.txt
+├── data/
+│   └── survey-lung-cancer.csv
+├── saved_models/
+│   ├── model.pkl
+│   ├── scaler.pkl
+│   ├── label_encoders.pkl
+│   └── metrics.pkl
+├── templates/
+│   └── index.html
+├── train_model.py
+├── LICENSE
+└── README.md
+```
 
-Development
-The project is built as a standalone HTML file with embedded CSS and JavaScript. The code is organized into:
+---
 
-HTML Structure: Semantic layout with clear sections
+## 🔧 Technology Stack
 
-CSS Styling: Modern, responsive design with CSS variables
+* **Backend**: Python, Flask, scikit-learn, pandas, joblib
+* **Frontend**: HTML5, CSS3, JavaScript, Chart.js, Font Awesome
+* **Modeling**: Random Forest, GridSearchCV, Label Encoding, StandardScaler
 
-JavaScript Logic:
+---
 
-Form data collection
+## 🚀 Installation & Setup
 
-Risk calculation algorithm
+```bash
+git clone https://github.com/yourusername/Lung-Cancer-Risk-Assessment.git
+cd Lung-Cancer-Risk-Assessment
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-Chart visualizations
+To retrain the model (optional):
 
-Dynamic results display
+```bash
+python train_model.py
+```
 
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+---
+
+## ▶️ Running the Application
+
+```bash
+python app.py
+```
+
+Then open your browser at: `http://127.0.0.1:5000/`
+
+---
+
+## 🔍 API Endpoints
+
+* `GET /` → Serves HTML UI
+* `POST /predict` → Returns prediction, probability, and encoded features
+* `GET /metrics` → Returns model metrics JSON
+* `GET /feature_importance` → Returns feature importance scores
+* `GET /health` → Health check
+
+---
+
+## ✨ How It Works
+
+* Inputs are encoded and scaled using saved encoders/scalers
+* Model predicts class and probability
+* Frontend displays:
+
+  * Risk percentage
+  * Risk classification (YES/NO)
+  * Visual charts (risk meter, feature importances, metrics)
+  * Top contributing health factors
+  * Personalized recommendations
+
+---
+
+## 🖼️ Screenshots
+
+(Screenshots should be placed in `docs/screenshots/` and referenced here)
+
+---
+
+## 👍 Contributing
+
+1. Fork this repository
+2. Create a new branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m "Add your message"`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Submit a pull request
+
+---
+
+## 📜 License
+
+MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## ⚠️ Disclaimer
+
+This tool is intended for informational purposes only and **does not constitute medical advice**. Always consult a qualified healthcare provider for diagnosis or treatment.
