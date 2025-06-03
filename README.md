@@ -98,7 +98,7 @@ Lung-Cancer-Risk-Assessment/
 ## 🚀 Installation & Setup
 
 ```bash
-git clone https://github.com/yourusername/Lung-Cancer-Risk-Assessment.git
+git clone https://github.com/218r1a7230/Lung-Cancer-Risk-Assessment.git
 cd Lung-Cancer-Risk-Assessment
 python -m venv venv
 source venv/bin/activate  # or venv\Scripts\activate
@@ -149,7 +149,10 @@ Then open your browser at: `http://127.0.0.1:5000/`
 
 ## 🖼️ Screenshots
 
-(Screenshots should be placed in `docs/screenshots/` and referenced here)
+![Screenshot 2025-06-03 215247](https://github.com/user-attachments/assets/bec23f44-6a09-40cb-9d7d-53b7f86d68ca)
+
+![image](https://github.com/user-attachments/assets/f1294d65-4690-44b2-96e4-528d2549e09e)
+
 
 ---
 
